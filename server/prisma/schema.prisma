@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Quiz {
+  id         String @id @default(uuid())
+  title      String
+  created_by String
+
+  questions Question[]
+
+  @@map("quiz")
+}
+
+model Question {
+  id    String @id @default(uuid())
+  title String
+
+  quiz_id   String
+
+  quiz    Quiz     @relation(fields: [quiz_id], references: [id])
+  answers Answer[]
+
+  @@map("question")
+}
+
+model Answer { 
+  id        String  @id @default(uuid())
+  content   String
+  isCorrect Boolean
+
+  question_id String
+
+  question Question @relation(fields: [question_id], references: [id])
+
+  @@map("answer")
+}
