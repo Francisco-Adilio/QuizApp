@@ -7,11 +7,9 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        '3': 'repeat(3, minmax(240px, 1fr))'
+        '3-quiz': 'repeat(3, minmax(240px, 1fr))',
+        'auto': 'repeat(auto-fit, minmax(400px, 1fr))'
       },
-      backgroundImage: {
-        'vasco': "url('/src/public/EscudoVasco.png')"
-      }
     },
   },
   plugins: [],
